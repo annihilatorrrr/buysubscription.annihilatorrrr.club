@@ -32,15 +32,14 @@
 </head>
 <body>
 <div id="buttonContainer">
-    <div id="buttonText">Click on the below button to open the UPI payment!</div>
+    <div id="buttonText">Click on the below button to open the UPI payment app!</div>
     <button id="paymentButton">Pay Now!</button>
 </div>
 <script>
     function getAmountFromURL() {
         const url = window.location.href;
         const urlSearchParams = new URLSearchParams(url.split('?')[1]);
-        const amount = urlSearchParams.get('amount');
-        return parseFloat(amount) || 0;
+        return parseFloat(urlSearchParams.get('amount')) || 0;
     }
     document.getElementById('paymentButton').addEventListener('click', function() {
         const amount = getAmountFromURL();
