@@ -32,7 +32,7 @@
 </head>
 <body>
 <div id="buttonContainer">
-    <div id="buttonText">Click on the below button!</div>
+    <div id="buttonText">Click on the below button to open the UPI payment!</div>
     <button id="paymentButton">Pay Now!</button>
 </div>
 <script>
@@ -40,10 +40,15 @@
         const url = window.location.href;
         const urlSearchParams = new URLSearchParams(url.split('?')[1]);
         const amount = urlSearchParams.get('amount');
-        return amount || '';
+        return parseFloat(amount) || 0;
     }
     document.getElementById('paymentButton').addEventListener('click', function() {
-        window.location.href = `upi://pay?pn=BuySubscriptionRoBot&pa=tanmoyomg7-1@oksbi&cu=INR&tn=Processed%20By%20BuySubscriptionRoBot&am=${getAmountFromURL()}`;
+        const amount = getAmountFromURL();
+        if (amount > 0) {
+            window.location.href = `upi://pay?pn=BuySubscriptionRoBot&pa=tanmoyomg7-1@oksbi&cu=INR&tn=Processed%20By%20BuySubscriptionRoBot&am=${amount}`;
+        } else {
+            window.location.href = 'https://telegram.me/BuySubscriptionRoBot';
+        }
     });
 </script>
 </body>
