@@ -41,10 +41,16 @@
         const urlSearchParams = new URLSearchParams(url.split('?')[1]);
         return parseFloat(urlSearchParams.get('amount')) || 0;
     }
+    function getupiFromURL() {
+        const url = window.location.href;
+        const urlSearchParams = new URLSearchParams(url.split('?')[1]);
+        return urlSearchParams.get('upi') || "annihilatorrrr@axl";
+    }
     document.getElementById('paymentButton').addEventListener('click', function() {
         const amount = getAmountFromURL();
+        const upi = getupiFromURL();
         if (amount > 0) {
-            window.location.href = `upi://pay?pn=BuySubscriptionRoBot&pa=annihilatorrrr@axl&cu=INR&tn=Processed%20By%20BuySubscriptionRoBot&am=${amount}`;
+            window.location.href = `upi://pay?pn=BuySubscriptionRoBot&pa=${upi}&cu=INR&tn=Processed%20By%20BuySubscriptionRoBot&am=${amount}`;
         } else {
             window.location.href = 'https://telegram.me/BuySubscriptionRoBot';
         }
